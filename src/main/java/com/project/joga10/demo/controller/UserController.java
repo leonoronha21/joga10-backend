@@ -28,9 +28,9 @@ public class UserController {
     @PostMapping("/cadastroUsuario")
     private ResponseEntity<String> registerUser(@RequestBody User user){
 
-    String msg = service.saveUser(user);
-    
-    return new ResponseEntity<String>(msg, HttpStatus.OK);
+            String msg = service.saveUser(user);
+            
+            return new ResponseEntity<String>(msg, HttpStatus.OK);
     }
 
 
