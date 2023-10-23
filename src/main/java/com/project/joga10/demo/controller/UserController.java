@@ -36,7 +36,7 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<String> loginUser(@RequestBody LoginDTO loginDTO) {
-        // Verifique se as credenciais de login são válidas usando o serviço de usuário
+        
         if (service.isValidUser(loginDTO.getEmail(), loginDTO.getPassword())) {
             return ResponseEntity.ok("Login bem-sucedido!");
         } else {

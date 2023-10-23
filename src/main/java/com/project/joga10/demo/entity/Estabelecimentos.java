@@ -23,13 +23,31 @@ public class Estabelecimentos{
     @Column(name = "idEstabelecimento")
     private Long id;
 
+    /* /* cnpjController 
+                  nomeFantasiaController
+                  razaoSocialController 
+                  cidadeController 
+                  cepController
+                  ruaController
+                  bairroController
+                  numeroController
+                  telefoneController
+                  emailController 
+                  horaAberturaController
+                  horaFechamentoController  */
+    private String cnpj;
     private String nome;
-    private String endereco;
-    private String telefone;
+    private String razao_social;
+    private String cidade;
+    private String cep;
+    private String rua;
+    private String bairro;
+    private String numero;
     private String hora_abertura;
     private String hora_fechamento;
+    private String telefone;
     private String email;
-    private String cnpj;
+    private Integer status = 0;
  
 
 }
