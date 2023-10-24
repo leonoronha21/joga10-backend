@@ -1,6 +1,8 @@
 package com.project.joga10.demo.services;
 
 
+
+
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import com.project.joga10.demo.repo.UserRepo;
@@ -34,5 +36,11 @@ public class UserService {
             return false; // Credenciais inválidas
         }
     }
+
+    public User getUserByEmail(String email) {
+        // Suponha que você tenha um repositório UserRepository definido.
+        User user = userRepo.findByEmail(email);
     
+        return user; // Pode ser null se nenhum usuário for encontrado com o email fornecido.
+    }
 }

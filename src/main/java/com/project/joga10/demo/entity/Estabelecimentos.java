@@ -46,6 +46,7 @@ public class Estabelecimentos{
     private String hora_abertura;
     private String hora_fechamento;
     private String telefone;
+   
     private String email;
     private Integer status = 0;
  
