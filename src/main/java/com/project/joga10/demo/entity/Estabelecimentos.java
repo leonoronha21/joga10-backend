@@ -2,6 +2,8 @@ package com.project.joga10.demo.entity;
 
 
 
+
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,7 +22,7 @@ import lombok.NoArgsConstructor;
 public class Estabelecimentos{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idEstabelecimento")
+    @Column(name = "Estabelecimento")
     private Long id;
 
     /* /* cnpjController 
