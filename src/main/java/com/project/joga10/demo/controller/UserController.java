@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -58,6 +59,20 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
+
+
+    //UPDATE DO USUÁRIO
+
+    @PutMapping("/atualizaUsuario")
+    public ResponseEntity<String> updateUser(@RequestBody User user) {
+    User updatedUser = service.updateUser(user);
+
+    if (updatedUser != null) {
+        return ResponseEntity.ok("Usuário atualizado com sucesso!");
+    } else {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado ou não foi possível atualizar.");
+    }
+}
    
 }
 

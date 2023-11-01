@@ -27,20 +27,46 @@ public class UserService {
 
 
     public boolean isValidUser(String email, String password) {
-        // Implemente a lógica para verificar as credenciais do usuário
+      
         User user = userRepo.findByEmail(email);
 
         if (user != null && user.getPassword().equals(password)) {
-            return true; // Credenciais válidas
+            return true;
         } else {
-            return false; // Credenciais inválidas
+            return false;
         }
     }
 
     public User getUserByEmail(String email) {
-        // Suponha que você tenha um repositório UserRepository definido.
+  
         User user = userRepo.findByEmail(email);
     
-        return user; // Pode ser null se nenhum usuário for encontrado com o email fornecido.
+        return user; 
+    }
+
+    public User updateUser(User user) {
+
+        User existingUser = userRepo.findByEmail(user.getEmail());
+    
+        if (existingUser != null) {
+          
+            existingUser.setPrimeiroNome(user.getPrimeiroNome());
+            existingUser.setSegundoNome(user.getSegundoNome()); //sobrenome
+            existingUser.setEmail(user.getEmail());
+            existingUser.setCidade(user.getCidade());
+            existingUser.setComplemento(user.getComplemento());
+            existingUser.setRua(user.getRua());
+            existingUser.setBairro(user.getBairro());
+            existingUser.setContato(user.getContato());
+
+
+            
+            userRepo.save(existingUser);
+    
+            return existingUser;
+        } else {
+         
+            return null;
+        }
     }
 }

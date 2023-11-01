@@ -6,6 +6,8 @@ import jakarta.persistence.Column;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,20 +19,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 
+
 @Table(name = "quadras")
 public class Quadras {
-    
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "QuadraID")
-
     private long id;
 
+    @ManyToOne  //fk estabelecimento
+    @JoinColumn(name = "Estabelecimento", referencedColumnName = "id")
+    private Estabelecimentos id_estabelecimento; 
 
-    private long idEstabelecimento;
     private String nome;
     private String TipoQuadra;
     private String TaxaHora;
-    
 }
