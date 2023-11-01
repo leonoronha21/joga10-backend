@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -44,10 +43,7 @@ public class EstabecimentosController{
 
     @GetMapping("/estabelecimentos")
     public ResponseEntity<List<Estabelecimentos>> getAllEstabelecimentos() {
-
-        
-
-        List<Estabelecimentos> estabelecimentos = estabelecimentosRepository.findAll();// Faça a lógica para buscar todos os estabelecimentos aqui
+        List<Estabelecimentos> estabelecimentos = estabelecimentosRepository.findAll();
         return ResponseEntity.ok(estabelecimentos);
     }
  
