@@ -21,7 +21,7 @@ public class PartidaController {
     @Autowired
     private PartidasService service;
 
-         @Autowired
+    @Autowired
     private PartidaRepository partidasRepository;
 
     public PartidaController(PartidasService service){

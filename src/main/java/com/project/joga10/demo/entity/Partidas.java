@@ -1,11 +1,12 @@
 package com.project.joga10.demo.entity;
 
-import org.springframework.data.annotation.Id;
+
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -27,12 +28,12 @@ public class Partidas {
     private long id;
 
     @ManyToOne  //fk estabelecimento
-    @JoinColumn(name = "Estabelecimento", referencedColumnName = "id")
-    private Estabelecimentos id_estabelecimento; 
+    @JoinColumn(name = "estabelecimento", referencedColumnName = "id")
+    private Estabelecimentos id_Estabelecimentos; 
 
     @ManyToOne  //fk estabelecimento
-    @JoinColumn(name = "Quadras", referencedColumnName = "id")
-    private Estabelecimentos QuadraID; 
+    @JoinColumn(name = "QuadrasID", referencedColumnName = "id")
+    private Quadras id_quadra; 
 
 
     private String duracao;

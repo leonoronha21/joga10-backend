@@ -1,11 +1,12 @@
 package com.project.joga10.demo.entity;
 
-import org.springframework.data.annotation.Id;
+
 
 import jakarta.persistence.Column;
-
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -15,7 +16,7 @@ import lombok.NoArgsConstructor;
 
 
 @Data
-//@Entity
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 
@@ -25,7 +26,7 @@ public class Quadras {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "QuadraID")
+    @Column(name = "quadra")
     private long id;
 
     @ManyToOne  //fk estabelecimento
