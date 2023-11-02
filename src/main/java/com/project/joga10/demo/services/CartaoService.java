@@ -3,8 +3,8 @@ package com.project.joga10.demo.services;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.project.joga10.demo.Repository.CartaoRepository;
 import com.project.joga10.demo.entity.Cartao;
-import com.project.joga10.demo.repo.CartaoRepository;
 
 @Service
 @Component

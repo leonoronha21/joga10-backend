@@ -5,7 +5,8 @@ package com.project.joga10.demo.services;
 
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import com.project.joga10.demo.repo.UserRepo;
+
+import com.project.joga10.demo.Repository.UserRepo;
 import com.project.joga10.demo.entity.User;
 
 @Service
@@ -18,6 +19,8 @@ public class UserService {
     public UserService(UserRepo userRepo) {
         this.userRepo = userRepo;
     }
+
+    
     public String saveUser(User user){
         
         userRepo.save(user);
