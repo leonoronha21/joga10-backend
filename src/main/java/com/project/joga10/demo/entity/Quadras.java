@@ -19,8 +19,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-
-
 @Table(name = "quadras")
 public class Quadras {
 
@@ -29,8 +27,8 @@ public class Quadras {
     @Column(name = "quadra")
     private long id;
 
-    @ManyToOne  //fk estabelecimento
-    @JoinColumn(name = "Estabelecimento", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "id_estabelecimento")
     private Estabelecimentos id_estabelecimento; 
 
     private String nome;

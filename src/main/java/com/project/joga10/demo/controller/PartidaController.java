@@ -27,13 +27,13 @@ public class PartidaController {
     public PartidaController(PartidasService service){
         this.service = service;
     }
-    
-    @PostMapping("/criaPartida")
-    private ResponseEntity<String> cadastraCartao(@RequestBody Partidas partidas)
+    @PostMapping("/criarPartidas")
+    private ResponseEntity<String> criaPartida(@RequestBody Partidas partidas)
     {
         String msg = service.SavePartidas(partidas);
         return new ResponseEntity<String>(msg, HttpStatus.OK);
     }
+    
 
     @GetMapping("/listaPartidas")
     public ResponseEntity<List<Partidas>> getAllPartidas() {
