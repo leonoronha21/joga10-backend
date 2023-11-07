@@ -2,6 +2,8 @@ package com.project.joga10.demo.services;
 
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+
+
 import com.project.joga10.demo.Repository.PartidaRepository;
 import com.project.joga10.demo.entity.Partidas;
 
@@ -27,5 +29,7 @@ public class PartidasService {
         return "Partida criada!";
     }
 
+
+    
 
 }

@@ -1,12 +1,14 @@
 package com.project.joga10.demo.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,5 +43,22 @@ public class PartidaController {
         List<Partidas> partidas = partidasRepository.findAll();
         return ResponseEntity.ok(partidas);
     }
+
+    
+    @PostMapping("/partidaPorId")
+    public ResponseEntity<Partidas> getPartidaByIdAndUserId(@RequestBody Map<String, String> requestParams) {
+        String idPartida = requestParams.get("PartidaID");
+        String idUser = requestParams.get("id_user");
+
+    Partidas partida = partidasRepository.findByIdAndUserId(idPartida, idUser);
+
+    if (partida != null) {
+        return ResponseEntity.ok(partida);
+    } else {
+        return ResponseEntity.notFound().build();
+    }
+}
+  
+    
 }
 
