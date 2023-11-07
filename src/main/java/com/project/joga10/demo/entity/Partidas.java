@@ -25,13 +25,13 @@ public class Partidas {
     private long id;
 
     /*IMPLEMENTAR O TRABALHO DE FKS COMO OBJETOS */
-  
+  //FK
     private Long id_estabelecimento;
 
- 
+   //FK
     private Long id_quadra;
 
-  
+  //FK
     private Long user_id;
 
     private String duracao;
