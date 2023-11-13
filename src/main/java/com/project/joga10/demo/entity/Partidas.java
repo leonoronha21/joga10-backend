@@ -2,11 +2,15 @@ package com.project.joga10.demo.entity;
 
 
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -39,4 +43,8 @@ public class Partidas {
     
     private String status;
     private String preco;
+
+     @OneToMany(mappedBy = "partida", cascade = CascadeType.ALL)
+    private List<PartidaMembro> membros;
+
 }

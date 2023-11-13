@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.project.joga10.demo.Repository.PartidaRepository;
+import com.project.joga10.demo.dto.PartidaDTO;
 import com.project.joga10.demo.entity.Partidas;
 import com.project.joga10.demo.services.PartidasService;
 
@@ -30,11 +31,10 @@ public class PartidaController {
         this.service = service;
     }
     @PostMapping("/criarPartidas")
-    private ResponseEntity<String> criaPartida(@RequestBody Partidas partidas)
-    {
-        String msg = service.SavePartidas(partidas);
-        return new ResponseEntity<String>(msg, HttpStatus.OK);
-    }
+        private ResponseEntity<String> criaPartida(@RequestBody PartidaDTO partidaDTO) {
+            String msg = service.SavePartidas(partidaDTO);
+            return new ResponseEntity<String>(msg, HttpStatus.OK);
+        }
     
 
     @GetMapping("/listaPartidas")

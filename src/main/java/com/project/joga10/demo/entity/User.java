@@ -32,6 +32,8 @@ public class User {
     private String bairro;
     private String contato;
 
-
+    public Long getId() {
+        return id;
+    }
 
 }

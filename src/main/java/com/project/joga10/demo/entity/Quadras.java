@@ -31,5 +31,5 @@ public class Quadras {
 
     private String nome;
     private String TipoQuadra;
-    private String TaxaHora;
+    private String preco;
 }
