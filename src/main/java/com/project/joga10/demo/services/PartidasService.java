@@ -43,16 +43,10 @@ public class PartidasService {
     
         for (PartidaMembroDTO membroDTO : allMembersDTO) {
 
-            PartidaMembro membro = new PartidaMembro();
-
-          
-            System.out.println(membroDTO.getId_user());
-           
+            PartidaMembro membro = new PartidaMembro();        
 
             membro.setPartida(partidas);
-            
             membro.setIdUser(membroDTO.getId_user());
-         
             membro.setEquipe(membroDTO.getEquipe());
             membro.setNome(membroDTO.getNome());
     

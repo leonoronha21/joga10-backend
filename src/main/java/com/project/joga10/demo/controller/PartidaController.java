@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.project.joga10.demo.Repository.PartidaMembroRepository;
 import com.project.joga10.demo.Repository.PartidaRepository;
 import com.project.joga10.demo.dto.PartidaDTO;
+import com.project.joga10.demo.entity.PartidaMembro;
 import com.project.joga10.demo.entity.Partidas;
 import com.project.joga10.demo.services.PartidasService;
 
@@ -26,6 +29,8 @@ public class PartidaController {
 
     @Autowired
     private PartidaRepository partidasRepository;
+     @Autowired
+    private PartidaMembroRepository partidaMembroRepository;
 
     public PartidaController(PartidasService service){
         this.service = service;
@@ -45,20 +50,21 @@ public class PartidaController {
     }
 
     
-    @PostMapping("/partidaPorId")
-    public ResponseEntity<Partidas> getPartidaByIdAndUserId(@RequestBody Map<String, String> requestParams) {
-        String idPartida = requestParams.get("PartidaID");
-        String idUser = requestParams.get("id_user");
+        @PostMapping("/partidaPorId")
+        public ResponseEntity<Partidas> getPartidaByIdAndUserId(@RequestBody Map<String, String> requestParams) {
+            String idPartida = requestParams.get("PartidaID");
+            String idUser = requestParams.get("id_user");
 
-    Partidas partida = partidasRepository.findByIdAndUserId(idPartida, idUser);
+            Partidas partida = partidasRepository.findByIdAndUserId(idPartida, idUser);
 
-    if (partida != null) {
-        return ResponseEntity.ok(partida);
-    } else {
-        return ResponseEntity.notFound().build();
+            List<PartidaMembro> membros = partidaMembroRepository.findMembroByIdPartida(partida);
+
+            partida.setMembros(membros);
+        
+
+           return ResponseEntity.ok(partida);
+       
     }
-}
-  
-    
+
 }
 

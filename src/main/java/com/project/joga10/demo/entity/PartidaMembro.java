@@ -1,5 +1,7 @@
 package com.project.joga10.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,6 +11,9 @@ import jakarta.persistence.JoinColumn;
 
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+
+
+
 
 @Entity
 @Table(name="PartidaMembro")
@@ -20,6 +25,7 @@ public class PartidaMembro {
 
   @ManyToOne
   @JoinColumn(name = "PartidaID", nullable = false)
+  @JsonBackReference
   private Partidas partida;
   
   
@@ -32,6 +38,26 @@ public class PartidaMembro {
 
   @Column(name = "nome")
   private String nome;
+
+  public Long getId() {
+    return id;
+  }
+
+  public Partidas getPartida() {
+    return partida;
+  }
+
+  public Long getId_user() {
+    return id_user;
+  }
+
+  public String getEquipe() {
+    return equipe;
+  }
+
+  public String getNome() {
+    return nome;
+  }
 
   public void setPartida(Partidas partidas) {
     this.partida = partidas;
@@ -48,4 +74,6 @@ public class PartidaMembro {
   public void setEquipe(String equipe) {
     this.equipe = equipe;
   }
+
+
 }

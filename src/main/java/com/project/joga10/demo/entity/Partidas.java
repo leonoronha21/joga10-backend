@@ -4,6 +4,8 @@ package com.project.joga10.demo.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -42,9 +44,10 @@ public class Partidas {
     private String data_hora;
     
     private String status;
-    private String preco;
+    private float preco;
 
      @OneToMany(mappedBy = "partida", cascade = CascadeType.ALL)
+     @JsonManagedReference
     private List<PartidaMembro> membros;
 
 }

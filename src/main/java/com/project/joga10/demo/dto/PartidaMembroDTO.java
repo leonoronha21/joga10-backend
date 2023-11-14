@@ -8,12 +8,7 @@ import com.project.joga10.demo.entity.Partidas;
 public class PartidaMembroDTO {
     private Partidas partidas;
     private Long id_user; 
-    public Long getId_user() {
-        return id_user;
-    }
-    public void setId_user(Long id_user) {
-        this.id_user = id_user;
-    }
+   
     private String nome; 
     private String equipe;
     
@@ -53,5 +48,11 @@ public class PartidaMembroDTO {
     }
     public void setEquipe(String equipe) {
         this.equipe = equipe;
+    }
+     public Long getId_user() {
+        return id_user;
+    }
+    public void setId_user(Long id_user) {
+        this.id_user = id_user;
     }
 }

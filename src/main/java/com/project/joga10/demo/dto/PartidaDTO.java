@@ -21,15 +21,14 @@ public class PartidaDTO {
  
     private Quadras quadra;
    
-    private Quadras preco;
+    private float preco;
 
+   
     private User userId;
   
     private User nome;
 
-    public Quadras getPreco() {
-        return preco;
-    }
+    
     private List<PartidaMembroDTO> time1Members;
     private List<PartidaMembroDTO> time2Members;
 
@@ -72,5 +71,13 @@ public class PartidaDTO {
     public User getNome() {
         return nome;
     }
-   
+     public float getPreco() {
+        return preco;
+    }
+    public void setPreco(float preco) {
+        this.preco = preco;
+    }
+    public void setMembros(List<PartidaMembroDTO> membrosDTO) {
+    }
+    
 }
