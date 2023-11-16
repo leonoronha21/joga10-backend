@@ -37,9 +37,15 @@ public class PartidaController {
     }
     @PostMapping("/criarPartidas")
         private ResponseEntity<String> criaPartida(@RequestBody PartidaDTO partidaDTO) {
-            String msg = service.SavePartidas(partidaDTO);
-            return new ResponseEntity<String>(msg, HttpStatus.OK);
+            try {
+        String msg = service.SavePartidas(partidaDTO);
+        return new ResponseEntity<String>(msg, HttpStatus.OK);
+             } catch (Exception e) {
+       
+        e.printStackTrace();
+        return new ResponseEntity<String>("Erro durante a criação da partida", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
     
 
     @GetMapping("/listaPartidas")

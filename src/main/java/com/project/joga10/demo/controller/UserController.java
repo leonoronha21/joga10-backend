@@ -1,5 +1,7 @@
 package com.project.joga10.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.joga10.demo.Repository.UserRepo;
 import com.project.joga10.demo.dto.LoginDTO;
+
 import com.project.joga10.demo.entity.User;
 import com.project.joga10.demo.services.UserService;
 
@@ -21,6 +25,9 @@ import com.project.joga10.demo.services.UserService;
 public class UserController {
     @Autowired
     private UserService service;
+
+    @Autowired
+    private UserRepo userRepository;
 
   
     public UserController(UserService service) {
@@ -60,6 +67,12 @@ public class UserController {
         }
     }
 
+
+    @GetMapping("/lista-usuarios")
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> users = userRepository.findAll();
+        return ResponseEntity.ok(users);
+    }
 
     //UPDATE DO USUÁRIO
 
