@@ -52,14 +52,17 @@ public class User implements UserDetails{
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         
-         return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+         return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
     @Override
     public String getUsername() {
         return email;
     }
-
+    @Override
+    public String getPassword(){
+        return Password;
+    }
     @Override
     public boolean isAccountNonExpired() {
         return true;

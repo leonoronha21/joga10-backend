@@ -1,6 +1,8 @@
 package com.project.joga10.demo.dto;
 
-public class LoginDTO {
+import com.project.joga10.demo.entity.User;
+
+public class LoginDTO extends User {
     private String email;
     private String password;
       

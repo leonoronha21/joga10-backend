@@ -41,7 +41,7 @@ public class UserController {
 
     @PostMapping("/cadastroUsuario")
     private ResponseEntity<String> registerUser(@RequestBody User user){
-
+        
             String msg = service.saveUser(user);
             
             return new ResponseEntity<String>(msg, HttpStatus.OK);
@@ -56,7 +56,7 @@ public class UserController {
             //var usernamepassword = new UsernamePasswordAuthenticationToken(loginDTO.getEmail(), loginDTO.getPassword());
            // System.out.println(usernamepassword);
            // this.authenticationManager.authenticate(usernamepassword);
-          
+           UserDetails user = loginDTO;
             return ResponseEntity.ok("Login bem-sucedido!");
             
         } else {
