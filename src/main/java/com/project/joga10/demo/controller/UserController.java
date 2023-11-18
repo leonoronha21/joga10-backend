@@ -2,9 +2,14 @@ package com.project.joga10.demo.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties.Authentication;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +33,8 @@ public class UserController {
 
     @Autowired
     private UserRepo userRepository;
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
   
     public UserController(UserService service) {
@@ -47,18 +54,22 @@ public class UserController {
     public ResponseEntity<String> loginUser(@RequestBody LoginDTO loginDTO) {
         
         if (service.isValidUser(loginDTO.getEmail(), loginDTO.getPassword())) {
+            var usernamepassword = new UsernamePasswordAuthenticationToken(loginDTO.getEmail(), loginDTO.getPassword());
+            System.out.println(usernamepassword);
+            this.authenticationManager.authenticate(usernamepassword);
             return ResponseEntity.ok("Login bem-sucedido!");
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
         }
+     
         
     }
 
     /* Requisição:  http://192.168.10.104:8080/consultaUsuario?email=leonoronha.andrade@gmail.com  */
 
     @GetMapping("/consultaUsuario")
-    public ResponseEntity<User> getUserByEmail(@RequestParam String email) {
-        User user = service.getUserByEmail(email);
+    public ResponseEntity<UserDetails> getUserByEmail(@RequestParam String email) {
+        UserDetails user = service.getUserByEmail(email);
     
         if (user != null) {
             return ResponseEntity.ok(user);

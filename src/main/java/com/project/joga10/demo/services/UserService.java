@@ -3,9 +3,12 @@ package com.project.joga10.demo.services;
 
 
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.project.Security.HashPassword;
 import com.project.joga10.demo.Repository.UserRepo;
 import com.project.joga10.demo.entity.User;
 
@@ -13,6 +16,7 @@ import com.project.joga10.demo.entity.User;
 @Component
 public class UserService {
     
+    @Autowired
     private final  UserRepo userRepo;
 
   
@@ -23,50 +27,59 @@ public class UserService {
     
     public String saveUser(User user){
         
+        String hashedPassword = HashPassword.hashPassword(user.getPassword());
+    
+    if (hashedPassword != null) {
+        user.setPassword(hashedPassword);
         userRepo.save(user);
         return "Cadastrado com Sucesso!";
+    } else {
+        // Lida com o caso em que a senha não pôde ser criptografada
+        return "Erro ao cadastrar usuário.";
+    }
 
     }
 
-
+    
     public boolean isValidUser(String email, String password) {
       
-        User user = userRepo.findByEmail(email);
+        UserDetails user = userRepo.findByEmail(email);
 
-        if (user != null && user.getPassword().equals(password)) {
-            return true;
+        if (user != null) {
+            String storedPassword = user.getPassword();
+            return HashPassword.checkPassword(password, storedPassword);
         } else {
             return false;
         }
     }
 
-    public User getUserByEmail(String email) {
+    public UserDetails getUserByEmail(String email) {
   
-        User user = userRepo.findByEmail(email);
+        UserDetails user = userRepo.findByEmail(email);
     
         return user; 
     }
 
     public User updateUser(User user) {
 
-        User existingUser = userRepo.findByEmail(user.getEmail());
+        UserDetails existingUser = userRepo.findByEmail(user.getEmail());
     
         if (existingUser != null) {
           
-            existingUser.setPrimeiroNome(user.getPrimeiroNome());
-            existingUser.setSegundoNome(user.getSegundoNome()); //sobrenome
-            existingUser.setEmail(user.getEmail());
-            existingUser.setCidade(user.getCidade());
-            existingUser.setComplemento(user.getComplemento());
-            existingUser.setRua(user.getRua());
-            existingUser.setBairro(user.getBairro());
-            existingUser.setContato(user.getContato());
+            ((User) existingUser).setPrimeiroNome(user.getPrimeiroNome());
+            ((User) existingUser).setSegundoNome(user.getSegundoNome()); //sobrenome
+           ((User) existingUser).setEmail(user.getEmail());
+           ((User) existingUser).setCidade(user.getCidade());
+           ((User) existingUser).setComplemento(user.getComplemento());
+            ((User) existingUser).setRua(user.getRua());
+            ((User) existingUser).setBairro(user.getBairro());
+            ((User) existingUser).setContato(user.getContato());
 
 
             
-            userRepo.save(existingUser);
+            userRepo.save(((User) existingUser));
     
-            return existingUser;
+            return ((User) existingUser);
         } else {
          
             return null;
