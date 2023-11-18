@@ -19,8 +19,21 @@ public class SecurityConfig {
         return httpSecurity
         .csrf(csrf -> csrf.disable())
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-        .authorizeHttpRequests(authorize -> authorize.requestMatchers(HttpMethod.POST, "/login")
-        .permitAll())
+        .authorizeHttpRequests(authorize -> authorize
+        .requestMatchers(HttpMethod.POST, "/login").permitAll()
+        .requestMatchers(HttpMethod.PUT, "/atualizaUsuario").permitAll()
+         .requestMatchers(HttpMethod.POST, "/cadastraCartao").permitAll()
+         .requestMatchers(HttpMethod.POST, "/CadastroEstabelecimento").permitAll()
+         .requestMatchers(HttpMethod.POST, "/CadastroUsuario").permitAll()
+          .requestMatchers(HttpMethod.GET, "/consultaUsuario").permitAll()
+           .requestMatchers(HttpMethod.POST, "/partidaPorId").permitAll()
+            .requestMatchers(HttpMethod.POST, "partidaPorId").permitAll()
+             .requestMatchers(HttpMethod.POST, "partidaPorId").permitAll()
+              .requestMatchers(HttpMethod.POST, "partidaPorId").permitAll()
+               .requestMatchers(HttpMethod.POST, "partidaPorId").permitAll()
+                .requestMatchers(HttpMethod.POST, "partidaPorId").permitAll()
+                .anyRequest().authenticated()
+        )        
         .build();
     }
   
