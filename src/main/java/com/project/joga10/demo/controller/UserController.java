@@ -54,8 +54,7 @@ public class UserController {
            
         if (service.isValidUser(loginDTO.getEmail(), loginDTO.getPassword())) {
        
-           UserDetails user = loginDTO;
-            return ResponseEntity.ok("Login bem-sucedido!");
+           return ResponseEntity.ok("Login bem-sucedido!");
             
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
