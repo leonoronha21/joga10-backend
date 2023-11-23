@@ -53,9 +53,7 @@ public class UserController {
         
            
         if (service.isValidUser(loginDTO.getEmail(), loginDTO.getPassword())) {
-            //var usernamepassword = new UsernamePasswordAuthenticationToken(loginDTO.getEmail(), loginDTO.getPassword());
-           // System.out.println(usernamepassword);
-           // this.authenticationManager.authenticate(usernamepassword);
+       
            UserDetails user = loginDTO;
             return ResponseEntity.ok("Login bem-sucedido!");
             
