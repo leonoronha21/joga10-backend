@@ -1,11 +1,9 @@
 package com.project.joga10.demo.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -16,8 +14,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig {
 
-    private  AuthenticationFilter authenticationFilter;
-    private  AuthenticationProvider authenticationProvider;
+      @Autowired
+    private JwtTokenProvider jwtTokenProvider;
     
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
@@ -40,8 +38,8 @@ public class SecurityConfig {
           
                
                 
-        ); //.authenticationProvider(authenticationProvider);
-               // .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class);       
+        ) //.authenticationProvider(authenticationProvider);
+               .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);       
         return httpSecurity.build();
     }
   

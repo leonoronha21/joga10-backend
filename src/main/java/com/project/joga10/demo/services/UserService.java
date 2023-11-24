@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.project.Security.HashPassword;
 import com.project.joga10.demo.Repository.UserRepo;
 import com.project.joga10.demo.entity.User;
+import com.project.joga10.demo.security.JwtTokenProvider;
 
 @Service
 @Component
@@ -18,6 +19,9 @@ public class UserService {
     
     @Autowired
     private final  UserRepo userRepo;
+     @Autowired
+    private JwtTokenProvider jwtTokenProvider;
+
 
   
     public UserService(UserRepo userRepo) {
@@ -84,5 +88,8 @@ public class UserService {
          
             return null;
         }
+    }
+    public String generateToken(UserDetails userDetails) {
+        return jwtTokenProvider.generateToken(userDetails);
     }
 }

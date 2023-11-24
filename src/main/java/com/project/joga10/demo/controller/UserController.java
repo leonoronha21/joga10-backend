@@ -19,6 +19,7 @@ import com.project.joga10.demo.Repository.UserRepo;
 import com.project.joga10.demo.dto.LoginDTO;
 
 import com.project.joga10.demo.entity.User;
+import com.project.joga10.demo.security.JwtTokenProvider;
 import com.project.joga10.demo.services.UserService;
 
 
@@ -32,7 +33,8 @@ public class UserController {
 
     @Autowired
     private UserRepo userRepository;
-   
+       @Autowired
+    private JwtTokenProvider jwtTokenProvider;
 
   
     public UserController(UserService service) {
@@ -53,10 +55,9 @@ public class UserController {
         
            
         if (service.isValidUser(loginDTO.getEmail(), loginDTO.getPassword())) {
-       
-           UserDetails user = loginDTO;
-            return ResponseEntity.ok("Login bem-sucedido!");
-            
+            UserDetails userDetails = service.getUserByEmail(loginDTO.getEmail());
+            String token = jwtTokenProvider.generateToken(userDetails);
+            return ResponseEntity.ok("Logado com sucesso! Token:"+token);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
         }
