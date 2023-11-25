@@ -37,7 +37,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter  {
 
     private String extractToken(HttpServletRequest request) {
         return null;
-        // Lógica para extrair o token do cabeçalho da requisição
-        // Exemplo: "Authorization: Bearer <token>"
+       
+        //"Authorization: Bearer <token>"
     }
 }

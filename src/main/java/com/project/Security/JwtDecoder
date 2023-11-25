@@ -1,0 +1,37 @@
+package com.project.Security;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
+
+import java.security.Key;
+
+public class JwtDecoder {
+
+    public static void main(String[] args) {
+        // Chave secreta usada para assinar o token
+        String secretKey = "Ou2GouHYefbGQk858VwSkZrNBHELhqhUZ0BmkpDhkvmoDVYxNSH+2+gwsY7nvVrlcZLSDZaNhDnpATGW0OqQEw==";
+        Key key = Keys.hmacShaKeyFor(secretKey.getBytes());
+
+        // Token JWT
+        String jwtToken = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzQGVtYWlsLmNvbSIsImlhdCI6MTcwMDc5NTg0MywiZXhwIjoxNzAwODgyMjQzfQ.3IDsqJUn6ncXgpaCt-cS8M_CZvI7oXtoFFYRO7E6GMQT0kqArj85wZcTdl4D-zFzRP-vZ39zSlceprquYrKvMA";
+
+        // Decodifica o token
+        Jws<Claims> claimsJws = Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(jwtToken);
+
+        // Obtém as reivindicações do token
+        Claims claims = claimsJws.getBody();
+
+        // Agora você pode acessar os dados do token
+        String username = claims.getSubject();
+        System.out.println("Username: " + username);
+
+        // Outras informações do token
+        System.out.println("Issuer: " + claims.getIssuer());
+        System.out.println("Expiration: " + claims.getExpiration());
+        // ... e assim por diante
+    }
+}
