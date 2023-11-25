@@ -1,7 +1,8 @@
 package com.project.joga10.demo.controller;
 
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -51,18 +52,21 @@ public class UserController {
 
 
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody LoginDTO loginDTO)  {
+    public ResponseEntity<Map<String, String>> loginUser(@RequestBody LoginDTO loginDTO) {
+        Map<String, String> response = new HashMap<>();
         
-           
         if (service.isValidUser(loginDTO.getEmail(), loginDTO.getPassword())) {
             UserDetails userDetails = service.getUserByEmail(loginDTO.getEmail());
             String token = jwtTokenProvider.generateToken(userDetails);
-            return ResponseEntity.ok("Logado com sucesso! Token:"+token);
+    
+            response.put("message", "Logado com sucesso!");
+            response.put("token", token);
+    
+            return ResponseEntity.ok(response);
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
+            response.put("message", "Credenciais inválidas");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
         }
-     
-        
     }
 
     /* Requisição:  http://192.168.10.104:8080/consultaUsuario?email=leonoronha.andrade@gmail.com  */
