@@ -27,6 +27,9 @@ public class Cartao {
     private String bandeira;
     private String numero_cartao;
     private String nome_titular;
+    @Column(name = "id_user")
+    private Long id_user; 
+    private String validade;
     
  
 }

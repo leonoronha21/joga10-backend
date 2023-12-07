@@ -33,7 +33,10 @@ public class SecurityConfig {
             .requestMatchers(HttpMethod.GET, "/lista-usuarios").permitAll()
              .requestMatchers(HttpMethod.GET, "/listaPartidas").permitAll()
               .requestMatchers(HttpMethod.POST, "/partidaPorId").permitAll()
-              
+               .requestMatchers(HttpMethod.POST, "/partidasPorUsuario").permitAll()
+               .requestMatchers(HttpMethod.POST, "/partidasAtivas").permitAll()
+                 .requestMatchers(HttpMethod.GET, "/estabelecimentos").permitAll()
+                .requestMatchers(HttpMethod.POST, "/cartaoUserId").permitAll()
                 .anyRequest().authenticated()
           
                

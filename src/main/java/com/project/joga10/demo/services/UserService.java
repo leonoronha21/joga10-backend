@@ -3,6 +3,8 @@ package com.project.joga10.demo.services;
 
 
 
+import javax.management.relation.Role;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.project.Security.HashPassword;
 import com.project.joga10.demo.Repository.UserRepo;
 import com.project.joga10.demo.entity.User;
+import com.project.joga10.demo.entity.ENUM.RoleUser;
 import com.project.joga10.demo.security.JwtTokenProvider;
 
 @Service
@@ -35,7 +38,9 @@ public class UserService {
     
     if (hashedPassword != null) {
         user.setPassword(hashedPassword);
-        userRepo.save(user);
+        RoleUser role = user.getRole();
+        user.setRole(role);
+       userRepo.save(user);
         return "Cadastrado com Sucesso!";
     } else {
         // Lida com o caso em que a senha não pôde ser criptografada

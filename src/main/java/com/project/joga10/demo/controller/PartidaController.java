@@ -71,6 +71,36 @@ public class PartidaController {
            return ResponseEntity.ok(partida);
        
     }
+    
+    @PostMapping("/partidasPorUsuario")
+    public ResponseEntity<List<Partidas>> getPartidasByUserId(@RequestBody Map<String, String> requestParams) {
+    String idUser = requestParams.get("id_user");
+
+    List<Partidas> partidas = partidasRepository.findbyUserId(idUser);
+
+    // Itera sobre a lista de partidas para buscar membros e configurá-los
+    for (Partidas partida : partidas) {
+        List<PartidaMembro> membros = partidaMembroRepository.findMembroByIdPartida(partida);
+        partida.setMembros(membros);
+    }
+
+    return ResponseEntity.ok(partidas);
+}
+ @PostMapping("/partidasAtivas")
+    public ResponseEntity<List<Partidas>> getUltimaPartida(@RequestBody Map<String, String> requestParams) {
+    String idUser = requestParams.get("id_user");
+    String status = requestParams.get("status");
+
+    List<Partidas> partidas = partidasRepository.findbyUserIdLastCreated(idUser, status);
+
+
+    for (Partidas partida : partidas) {
+        List<PartidaMembro> membros = partidaMembroRepository.findMembroByIdPartida(partida);
+        partida.setMembros(membros);
+    }
+
+    return ResponseEntity.ok(partidas);
+}
 
 }
 

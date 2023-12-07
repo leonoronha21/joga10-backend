@@ -44,7 +44,13 @@ public class JwtTokenProvider {
                     .setSubject(userDetails.getUsername())
                     .claim("nome", user.getPrimeiroNome())          // Adicione o nome ao token
                     .claim("sobrenome", user.getSegundoNome())
-                    .claim("id_user", user.getId()) // Adicione o sobrenome ao token
+                    .claim("id_user", user.getId()) 
+                    .claim("bairro", user.getBairro())
+                    .claim("cidade", user.getCidade())
+                    .claim("complemento", user.getComplemento())
+                    .claim("rua", user.getRua())
+                      .claim("contato", user.getContato())
+                   
                     .setIssuedAt(new Date())
                     .setExpiration(expiryDate)
                     .signWith(SignatureAlgorithm.HS512, jwtSecret)

@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 public class Estabelecimentos{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "estabelecimento")
+    @Column(name = "id_estabelecimento")
     private Long id;
 
     /* /* cnpjController 
