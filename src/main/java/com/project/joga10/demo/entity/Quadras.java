@@ -23,13 +23,15 @@ public class Quadras {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "quadra")
+    @Column(name = "id_quadra")
     private long id;
 
  
     private Long id_estabelecimento; 
 
     private String nome;
+    @Column(name = "tipo_quadra")
     private String TipoQuadra;
+    @Column(name = "preco")
     private String preco;
 }

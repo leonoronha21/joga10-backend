@@ -1,5 +1,7 @@
 package com.project.joga10.demo.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +23,11 @@ public class CartaoService {
         cartaoRepository.save(cartao);
         return "Cadastrado com sucesso!";
     }
-
+    
+     public List<Cartao> getCartaoById(String idUser) {
+  
+       List <Cartao> cartao = cartaoRepository.findByIdUser(idUser);
+    
+        return cartao; 
+    }
 }
