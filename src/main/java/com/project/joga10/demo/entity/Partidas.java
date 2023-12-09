@@ -50,4 +50,8 @@ public class Partidas {
      @JsonManagedReference
     private List<PartidaMembro> membros;
 
+    public boolean isPresent() {
+        return false;
+    }
+
 }

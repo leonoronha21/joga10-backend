@@ -39,6 +39,8 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/cartaoUserId").permitAll()
                 .requestMatchers(HttpMethod.GET, "/listaCartoesUser").permitAll()
                 .requestMatchers(HttpMethod.GET, "/quadras").permitAll()
+            .requestMatchers(HttpMethod.PUT, "/finalizaPartida").permitAll()
+                
                 .anyRequest().authenticated()
           
                

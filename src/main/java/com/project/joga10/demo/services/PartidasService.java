@@ -2,6 +2,7 @@ package com.project.joga10.demo.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -55,6 +56,26 @@ public class PartidasService {
         }
     
         return "Partida criada!";
+    }
+
+    public Partidas updatePartida(Partidas partida) {
+        Optional<Partidas> existingPartida = partidasRepository.findById(partida.getId());
+        
+        System.out.println(partida.getId());
+        
+        if (existingPartida.isPresent()) {
+            Partidas p = existingPartida.get();
+          
+            p.setStatus(partida.getStatus());
+            
+    
+            partidasRepository.save(p);
+    
+            return p;
+        } else {
+            // Lógica para lidar com a partida não encontrada, se necessário
+            return null;
+        }
     }
     
 

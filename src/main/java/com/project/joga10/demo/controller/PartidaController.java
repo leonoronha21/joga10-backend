@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +19,7 @@ import com.project.joga10.demo.Repository.PartidaRepository;
 import com.project.joga10.demo.dto.PartidaDTO;
 import com.project.joga10.demo.entity.PartidaMembro;
 import com.project.joga10.demo.entity.Partidas;
+import com.project.joga10.demo.entity.User;
 import com.project.joga10.demo.services.PartidasService;
 
 @RestController
@@ -101,6 +103,15 @@ public class PartidaController {
 
     return ResponseEntity.ok(partidas);
 }
+        @PutMapping("/finalizaPartida")
+        public ResponseEntity<String> finalizarPartida(@RequestBody Partidas partida) {
+       Partidas partidaAtualizada = service.updatePartida(partida);
 
+    if (partidaAtualizada != null) {
+        return ResponseEntity.ok("Partida finalizada com sucesso!");
+    } else {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Partida não encontrada ou não foi possível finalizar.");
+    }
+}
 }
 
