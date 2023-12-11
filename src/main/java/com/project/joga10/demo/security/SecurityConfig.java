@@ -40,7 +40,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/listaCartoesUser").permitAll()
                 .requestMatchers(HttpMethod.GET, "/quadras").permitAll()
             .requestMatchers(HttpMethod.PUT, "/finalizaPartida").permitAll()
-                
+                 .requestMatchers(HttpMethod.POST, "/adicionaMembro").permitAll()
                 .anyRequest().authenticated()
           
                
