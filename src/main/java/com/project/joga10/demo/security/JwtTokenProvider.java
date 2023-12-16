@@ -34,13 +34,13 @@ public class JwtTokenProvider {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + jwtExpirationInMs);
 
-        // Certifique-se de que userDetails seja uma instância de User
+        
         if (userDetails instanceof User) {
             User user = (User) userDetails;
 
             return Jwts.builder()
                     .setSubject(userDetails.getUsername())
-                    .claim("nome", user.getPrimeiroNome())          // Adicione o nome ao token
+                    .claim("nome", user.getPrimeiroNome())          
                     .claim("sobrenome", user.getSegundoNome())
                     .claim("id_user", user.getId()) 
                     .claim("bairro", user.getBairro())
@@ -55,7 +55,7 @@ public class JwtTokenProvider {
                     .compact();
         }
 
-        return null; // Lide com outros tipos de UserDetails, se necessário
+        return null; 
     }
 
     public boolean validateToken(String token) {

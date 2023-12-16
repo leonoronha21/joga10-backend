@@ -23,8 +23,8 @@ public class PartidaMembroController {
     @PostMapping("/adicionaMembro")
     public PartidaMembro adicionarMembroPartida(
             @RequestParam Partidas idPartida,
-            @RequestParam long idUser) {
+            @RequestParam long idUser,  @RequestParam String nome,  @RequestParam String equipe) {
 
-        return partidaMembroService.adicionarMembroPartida(idPartida, idUser);
+        return partidaMembroService.adicionarMembroPartida(idPartida, idUser, nome, equipe);
     }
 }

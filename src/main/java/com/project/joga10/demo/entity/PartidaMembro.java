@@ -75,5 +75,7 @@ public class PartidaMembro {
     this.equipe = equipe;
   }
 
+ 
+
 
 }

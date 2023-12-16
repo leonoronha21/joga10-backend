@@ -41,7 +41,7 @@ public class UserService {
        userRepo.save(user);
         return "Cadastrado com Sucesso!";
     } else {
-        // Lida com o caso em que a senha não pôde ser criptografada
+  
         return "Erro ao cadastrar usuário.";
     }
 
@@ -74,7 +74,7 @@ public class UserService {
         if (existingUser != null) {
           
             ((User) existingUser).setPrimeiroNome(user.getPrimeiroNome());
-            ((User) existingUser).setSegundoNome(user.getSegundoNome()); //sobrenome
+            ((User) existingUser).setSegundoNome(user.getSegundoNome()); 
            ((User) existingUser).setEmail(user.getEmail());
            ((User) existingUser).setCidade(user.getCidade());
            ((User) existingUser).setComplemento(user.getComplemento());
