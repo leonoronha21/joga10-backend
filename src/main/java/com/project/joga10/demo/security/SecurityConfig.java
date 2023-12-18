@@ -25,7 +25,7 @@ public class SecurityConfig {
         .authorizeHttpRequests(authorize -> authorize
         .requestMatchers(HttpMethod.POST, "/login").permitAll()
         .requestMatchers(HttpMethod.PUT, "/atualiza-Usuario").hasRole("user")
-         .requestMatchers(HttpMethod.POST, "/cadastr-Cartao").hasRole("user")
+         .requestMatchers(HttpMethod.POST, "/cadastro-Cartao").hasRole("user")
          .requestMatchers(HttpMethod.POST, "/cadastroEstabelecimento").permitAll()
          .requestMatchers(HttpMethod.POST, "/cadastroUsuario").permitAll()
          .requestMatchers(HttpMethod.GET, "/consulta-Usuario").hasRole("user")
