@@ -9,12 +9,11 @@ import java.security.Key;
 public class JwtDecoder {
 
     public static void main(String[] args) {
-        // Chave secreta usada para assinar o token
-        String secretKey = "Ou2GouHYefbGQk858VwSkZrNBHELhqhUZ0BmkpDhkvmoDVYxNSH+2+gwsY7nvVrlcZLSDZaNhDnpATGW0OqQEw==";
+        
+        String secretKey = $secKey;
         Key key = Keys.hmacShaKeyFor(secretKey.getBytes());
-
-        // Token JWT
-        String jwtToken = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzQGVtYWlsLmNvbSIsImlhdCI6MTcwMDc5NTg0MywiZXhwIjoxNzAwODgyMjQzfQ.3IDsqJUn6ncXgpaCt-cS8M_CZvI7oXtoFFYRO7E6GMQT0kqArj85wZcTdl4D-zFzRP-vZ39zSlceprquYrKvMA";
+  
+        String jwtToken = $TokenKey;
 
         // Decodifica o token
         Jws<Claims> claimsJws = Jwts.parserBuilder()
