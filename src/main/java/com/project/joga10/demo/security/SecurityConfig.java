@@ -14,41 +14,38 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig {
 
-      @Autowired
-    private JwtTokenProvider jwtTokenProvider;
-    
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
-         httpSecurity
+  @Autowired
+  private JwtTokenProvider jwtTokenProvider;
+
+  @Bean
+  public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+    httpSecurity
         .csrf(csrf -> csrf.disable())
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authorizeHttpRequests(authorize -> authorize
-        .requestMatchers(HttpMethod.POST, "/login").permitAll()
-        .requestMatchers(HttpMethod.PUT, "/atualizaUsuario").hasRole("user")
-         .requestMatchers(HttpMethod.POST, "/cadastraCartao").hasRole("user")
-         .requestMatchers(HttpMethod.POST, "/cadastroEstabelecimento").permitAll()
-         .requestMatchers(HttpMethod.POST, "/cadastroUsuario").permitAll()
-          .requestMatchers(HttpMethod.GET, "/consultaUsuario").hasRole("user")
-           .requestMatchers(HttpMethod.POST, "/criarPartidas").hasRole("user")
-            .requestMatchers(HttpMethod.GET, "/lista-usuarios").hasRole("user")
-             .requestMatchers(HttpMethod.GET, "/listaPartidas").hasRole("user")
-              .requestMatchers(HttpMethod.POST, "/partidaPorId").hasRole("user")
-               .requestMatchers(HttpMethod.POST, "/partidasPorUsuario").hasRole("user")
-               .requestMatchers(HttpMethod.POST, "/partidasAtivas").hasRole("user")
-                 .requestMatchers(HttpMethod.GET, "/estabelecimentos").hasRole("user")
-                .requestMatchers(HttpMethod.POST, "/cartaoUserId").hasRole("user")
-                .requestMatchers(HttpMethod.GET, "/listaCartoesUser").hasRole("user")
-                .requestMatchers(HttpMethod.GET, "/quadras").hasRole("user")
-            .requestMatchers(HttpMethod.PUT, "/finalizaPartida").hasRole("user")
-                 .requestMatchers(HttpMethod.POST, "/adicionaMembro").hasRole("user")
-                .anyRequest().authenticated()
-          
-               
-                
-        ) //.authenticationProvider(authenticationProvider);
-               .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);       
-        return httpSecurity.build();
-    }
-  
-  
+            .requestMatchers(HttpMethod.POST, "/login").permitAll()
+            .requestMatchers(HttpMethod.PUT, "/atualizaUsuario").permitAll()
+            .requestMatchers(HttpMethod.POST, "/cadastraCartao").permitAll()
+            .requestMatchers(HttpMethod.POST, "/cadastroEstabelecimento").permitAll()
+            .requestMatchers(HttpMethod.POST, "/cadastroUsuario").permitAll()
+            .requestMatchers(HttpMethod.GET, "/consultaUsuario").permitAll()
+            .requestMatchers(HttpMethod.POST, "/criarPartidas").permitAll()
+            .requestMatchers(HttpMethod.GET, "/lista-usuarios").permitAll()
+            .requestMatchers(HttpMethod.GET, "/listaPartidas").permitAll()
+            .requestMatchers(HttpMethod.POST, "/partidaPorId").permitAll()
+            .requestMatchers(HttpMethod.POST, "/partidasPorUsuario").permitAll()
+            .requestMatchers(HttpMethod.POST, "/partidasAtivas").permitAll()
+            .requestMatchers(HttpMethod.GET, "/estabelecimentos").permitAll()
+            .requestMatchers(HttpMethod.POST, "/cartaoUserId").permitAll()
+            .requestMatchers(HttpMethod.GET, "/listaCartoesUser").permitAll()
+            .requestMatchers(HttpMethod.GET, "/quadras").permitAll()
+            .requestMatchers(HttpMethod.PUT, "/finalizaPartida").permitAll()
+            .requestMatchers(HttpMethod.POST, "/adicionaMembro").permitAll()
+            .anyRequest().authenticated()
+
+        ) // .authenticationProvider(authenticationProvider);
+        .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+    return httpSecurity.build();
+  }
+
 }
